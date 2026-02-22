@@ -1,0 +1,19 @@
+# Contoso Analytics — PostgreSQL Setup
+# PostgreSQL 16 running in Docker for local development
+# Usage: docker compose up -d
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: contoso_pg_v2
+    environment:
+      POSTGRES_USER: contoso
+      POSTGRES_PASSWORD: contoso
+      POSTGRES_DB: contoso
+    ports:
+      - "5433:5432"  # Host 5433 để tránh conflict với container cũ đang chạy port 5432
+    volumes:
+      - contoso_pgdata:/var/lib/postgresql/data
+
+volumes:
+  contoso_pgdata:
